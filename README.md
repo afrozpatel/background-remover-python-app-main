@@ -153,8 +153,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker') {
-                        sh "docker tag background-remover-python-app amonkincloud/background-remover-python-app:latest"
-                        sh "docker push amonkincloud/background-remover-python-app:latest"
+                        sh "docker tag background-remover-python-app afroz5840/background-remover-python-app:latest"
+                        sh "docker push afroz5840/background-remover-python-app:latest"
                     }
                 }
             }
@@ -163,16 +163,16 @@ pipeline {
             steps {
                 script {
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                       sh 'docker-scout quickview amonkincloud/background-remover-python-app:latest'
-                       sh 'docker-scout cves amonkincloud/background-remover-python-app:latest'
-                       sh 'docker-scout recommendations amonkincloud/background-remover-python-app:latest'
+                       sh 'docker-scout quickview afroz5840/background-remover-python-app:latest'
+                       sh 'docker-scout cves afroz5840/background-remover-python-app:latest'
+                       sh 'docker-scout recommendations afroz5840/background-remover-python-app:latest'
                    }
                 }
             }
         }
         stage ("Deploy to Container") {
             steps {
-                sh 'docker run -d --name background-remover-python-app -p 5100:5100 amonkincloud/background-remover-python-app:latest'
+                sh 'docker run -d --name background-remover-python-app -p 5100:5100 afroz5840/background-remover-python-app:latest'
             }
         }
     }
